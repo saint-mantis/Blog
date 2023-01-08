@@ -76,5 +76,54 @@ body {
     font-size: 17px;
     position: relative;
 
+
   
+}
+.blog-heading{
+    
+float: left;
+position: relative;
+width: 100%;
+line-height: 0.5;
+
+}
+.card-time{
+            
+            
+    display: flex;
+    color: #564e8d;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 20px;
+    background-color:#f2f2f2;
+    color: black;
+    border-radius: 5px;
+    padding: 5px;
+
+
+}
+
+.sub-div{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+
+    
+}
+.sub-div-one{
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    gap: 5px;
+    align-items: center;
+
+}
+.sub-div-two{
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content:flex-end;
+    gap: 5px;
+
 }
