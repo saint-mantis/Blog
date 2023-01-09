@@ -165,4 +165,61 @@
     .page-content-wrapper{
         display: flex;
     }
+    @media only screen and (max-width: 890px) {
+        .main-wrapper{
+            visibility: hidden;
+            width: 0px;
+            height: 0px;
+        }
+        .mb-main-wrapper{
+            display:flex;
+            flex-direction: column;
+        }
+        .mb-logo{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+        }
+        .mb-nav-wrapper{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        .mb-res-navbox{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 300px;
+            background-color: #564e8d;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+        }
+        
+        .mb-page-nav-wrapper{
+            display:flex;
+            background-color: #564e8d;
+            width: 100%;
+            height: 50px;
+            align-items: center;
+            gap: 150px;
 
+        
+        }
+        .mb-content-wrapper{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .mb-grid-wrapper{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+
+    }
