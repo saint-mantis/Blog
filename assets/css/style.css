@@ -196,6 +196,7 @@
             justify-content: center;
             color: white;
             font-size: 20px;
+            transition: height 0.5s;
         }
         
         .mb-page-nav-wrapper{
@@ -220,6 +221,6 @@
             flex-direction: column;
             gap: 20px;
         }
-        
+
 
     }
