@@ -5,8 +5,15 @@ body {
 
     font-family: 'Quicksand', sans-serif;
     background-color: #f0f0fa;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+
 
     }
+.mb-page-main-main-wrapper{
+    display: none;
+}
 .page-main-wrapper{
 
     display:flex;
@@ -23,7 +30,6 @@ body {
         display: flex;
         width: 100%;
         height: 50px;
-        border-radius: 5px;
         background-color:#564e8d;
         position: sticky;
         top: 0;
@@ -54,10 +60,14 @@ body {
 
 }
 .page-content-wrapper{
+
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 50px;
     
 
 }
@@ -141,18 +151,53 @@ p4{
 }
 @media only screen and (max-width: 890px) {
 
+body{
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    width: 100%;
+  
+}
 
 .page-main-wrapper{
-    visibility: hidden; 
-    height: 0px;
-    width: 0px;
+    display: none;
+
    
     
 }
-.mb-page-main-main-wrapper{
+.page-content-wrapper{
+    display: none;
+
+}
+.mb-page-content-wrapper{
     display: flex;
     flex-direction: column;
+    width: 100%;
+
+}
+.mb-page-main-main-wrapper{
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
     
+}
+
+.mb-nav-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height:auto
+
+
+}
+.mb-page-content-wrapper{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
 }
 .mb-page-main-wrapper{
     display: flex;
@@ -160,12 +205,12 @@ p4{
     width: 100%;
     flex-direction: column;
     align-items: center;
+
+    position: relative;
+
+    
 }
-.mb-nav-wrapper{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
+
 .mb-res-navbox{
     display: flex;
     flex-direction: column;
@@ -176,6 +221,7 @@ p4{
     justify-content: center;
     color: white;
     font-size: 20px;
+   
 }
 
 .mb-page-nav-wrapper{
@@ -184,7 +230,24 @@ p4{
     width: 100%;
     height: 50px;
     align-items: center;
-    gap: 150px;
+   
+
+
+}
+.mb-menu{
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+ 
+
+}
+.mb-logo{
+    display:flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
 
 }
 .mb-blog-heading{
@@ -196,6 +259,7 @@ p4{
     line-height: 0.5;  
     margin-top: 10px;  
     margin-bottom: 30px;
+
 }
 .mb-sub-div{
     display: flex;
