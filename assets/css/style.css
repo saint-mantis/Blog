@@ -13,7 +13,7 @@
 
         }
     p1{
-        font-size: 20px;
+        font-size: 17px;
         font-weight: bold;
         color: #564e8d;
         margin-top: 10px;
@@ -21,6 +21,7 @@
     }
     p2{
         font-size:15px;
+        color:black;
     }
     .main-wrapper{
 
