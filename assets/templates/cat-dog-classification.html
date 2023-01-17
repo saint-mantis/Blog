@@ -1,0 +1,348 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat-Dog Classification</title>
+    <link rel="stylesheet" href="../css/blog.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+	<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/fav-icon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/fav-icon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/fav-icon/favicon-16x16.png">
+    <link rel="manifest" href="../images/fav-icon/site.webmanifest">
+    <link rel="shortcut icon" href="../images/fav-icon/favicon.ico">
+</head>
+<body>
+    <div class="page-main-wrapper">
+        <div class="page-nav-wrapper">
+            <div class="logo">
+                <p>saintmantis</p>
+            </div>
+            <div class="nav-bar">
+    
+				<p><a href="../../index.html" style="text-decoration: none; color: white;">Home</a></p>
+                <p><a href="https://arunkbabu.me" target="_blank" style="text-decoration: none; color: white;" >Portfolio</a></p>
+                <p><a href="mailto:arunkbabu.dev@gmail.com" target="_blank" style="text-decoration: none; color: white;">Contact</a></p>
+                <p>Contribute</p>
+        
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+
+            <div class="page-main-content">
+				<div class="blog-heading">
+					<h1>Cat-Dog Classification using CNN Keras </h1> 
+					<div class="sub-div">
+
+						<div class="sub-div-one">
+							<p>Published by <b> Arun Babu </b>on </p>
+							<p class="card-time"> 17-01-2023</p>
+						</div>
+						<div class="sub-div-two">
+							<p>Share on</p>
+							<a href=" https://www.linkedin.com/sharing/share-offsite/?url=your-url-here.com" target="_blank" title="Share on LinkedIn"> <box-icon type='logo' name='linkedin-square'></box-icon></a>
+							<a href="http://twitter.com/share?text=text goes here&url=http://url goes here&hashtags=hashtag1,hashtag2,hashtag3" target="_blank"><box-icon name='twitter' type='logo' ></box-icon></a>
+							<a href="https://www.facebook.com/share.php?u=https://github.com/saint-mantis/Blog" target="_blank"><box-icon name='facebook-square' type='logo' ></box-icon></a>
+							<box-icon name='quora' type='logo'></box-icon>
+						</div>
+					</div>
+				</div>
+				<hr color="#f2f2f2" width="800px">
+                <p>Classification of images of cats and dogs is a common task in the field of computer vision. In this blog post, we will walk through the process of building a classifier using Keras and Python3 that can accurately distinguish between images of cats and dogs.
+                    <br/>
+        First, we will start by importing the necessary libraries. We will be using the following libraries in this tutorial:
+                    <br/>
+                    <br>
+        Numpy: for working with arrays and matrices
+                    <br/>
+        Matplotlib: for visualizing data
+                    <br/>
+        TensorFlow: for building and training the model
+                    <br/>
+        Keras: for building the neural network layers
+                    <br/>
+                </p>
+                <div class="show-code">
+                    <p>
+        import numpy as np <br>
+        import matplotlib.pyplot as plt <br>
+        from tensorflow.keras import layers <br>
+        from tensorflow.keras import models <br>
+
+                    </p>
+
+                </div>
+        <p>Next, we will need to obtain a dataset of images of cats and dogs. There are many publicly available datasets that can be used for this task, such as the Kaggle Cats and Dogs dataset. Once we have obtained the dataset, we will need to preprocess the images by resizing and normalizing them. We will also need to divide the data into training and test sets.</p>
+        <br>
+        <div class="show-code">
+            <p>
+                from tensorflow.keras.preprocessing.image import ImageDataGenerator <br><br>
+
+                # Set the image size <br>   
+                IMAGE_SIZE = (150, 150)<br><br>
+    
+                # Create the training and test data generators<br>
+                train_datagen = ImageDataGenerator(rescale = 1./255)<br>
+                test_datagen = ImageDataGenerator(rescale = 1./255)<br><br>
+    
+                # Create the training and test generators<br>
+                train_generator = train_datagen.flow_from_directory(<br>
+                    'data/train',<br>
+                    target_size = IMAGE_SIZE,<br>
+                    batch_size = 32,<br>
+                    class_mode = 'binary')<br><br>
+    
+                test_generator = test_datagen.flow_from_directory(<br>
+                    'data/test',<br>
+                    target_size = IMAGE_SIZE,<br>
+                    batch_size = 32,<br>
+                    class_mode = 'binary')<br>
+            </p>
+
+        </div>
+        <p>
+            Once the data is preprocessed, we can build the neural network model using Keras. We will use a simple convolutional neural network (CNN) with two convolutional layers and two fully connected layers.
+        </p>
+        <div class="show-code">
+        <p>
+            model = models.Sequential() <br>
+            model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))<br>
+            model.add(layers.MaxPooling2D((2, 2)))<br>
+            model.add(layers.Conv2D(64, (3, 3), activation='relu'))<br>
+            model.add(layers.MaxPooling2D((2, 2)))<br>
+            model.add(layers.Conv2D(128, (3, 3), activation='relu'))<br>
+            model.add(layers.MaxPooling2D((2, 2)))<br>
+            model.add(layers.Flatten())<br>
+            model.add(layers.Dense(512, activation='relu'))<br>
+            model.add(layers.Dense(1, activation='sigmoid')) <br>
+        </p>
+
+        </div>
+        <p>Once the model is defined, we can then compile and train it using the training data.</p>
+        <div class="show-code">
+            <p>
+                model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc']) <br>
+                history = model.fit(<br>
+                train_generator,<br>
+                steps_per_epoch=100,<br>
+                epochs=10,<br>
+                validation_data=test_generator,<br>
+                validation_steps=50)<br>
+            </p>
+
+        </div>
+        <p>Now that the model is trained, we can evaluate its performance on the test data using the evaluate() function.</p>
+        <div class="show-code">
+            <p>
+                test_loss, test_acc = model.evaluate(test_generator, steps=50) <br>
+                print('Test accuracy:', test_acc) <br>
+            </p>
+        </div>
+        <p>Finally, we can use the trained model to make predictions on new images.</p>
+        <div class="show-code">
+            <p>
+                from tensorflow.keras.preprocessing import image <br><br>
+
+                # Load an image file<br>
+                img = image.load_img('data/test/dogs/dog1.jpg', target_size=(150, 150))<br><br>
+
+                # Convert the image to a numpy array<br>
+                x = image.img_to_array(img)<br><br>
+
+                # Add an extra dimension to the array (required by the model)<br>
+                x = np.expand_dims(x, axis=0)<br><br>
+
+                # Make a prediction<br>
+                predictions = model.predict(x)<br><br>
+
+                # Print the prediction<br>
+                print(predictions)<br>
+
+            </p>
+        </div>
+        <p>With this, we have successfully built a classifier that can distinguish between images of cats and dogs using Keras.</p>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    
+	<div class="mb-page-main-main-wrapper">
+		<div class="mb-nav-wrapper">
+			<div class="mb-page-nav-wrapper">
+				<div class="mb-menu">
+					<img src="../images/menu-regular-36.png" width="45px" onclick="showMenu()" style="margin-left: 5px;" alt="menu-icon">
+	
+				</div>
+				<div class="mb-logo">
+					<p style="color: white; font-size: 20px;">saintmantis</p>
+				</div>
+
+			</div>
+			<div class="mb-res-navbox" id="mb-navbox" >
+				<p><a href="../../index.html" style="text-decoration: none; color: white;">Home</a></p>
+                <p><a href="https://arunkbabu.me" target="_blank" style="text-decoration: none; color: white;" >Portfolio</a></p>
+                <p><a href="mailto:arunkbabu.dev@gmail.com" target="_blank" style="text-decoration: none; color: white;">Contact</a></p>
+                <p>Contribute</p>
+			</div>
+		</div>
+		<div class="mb-page-content-wrapper">
+			<div class="mb-page-main-wrapper">
+				<div class="mb-blog-heading">
+					<div class="mb-blog-topic-heading">
+                        <h1 style="margin-left: 10px;">Cat-Dog Classification using CNN Keras </h1>
+                    </div>
+					<div class="mb-sub-div">
+						<div class="mb-sub-div-one">
+							<p>Published by <b> Arun Babu </b>on </p>
+							<p class="card-time">17-01-2023</p>
+						</div>
+						<div class="mb-sub-div-two">
+							<p>Share on</p>
+							<a href=" https://www.linkedin.com/sharing/share-offsite/?url=your-url-here.com" target="_blank" title="Share on LinkedIn"> <box-icon type='logo' name='linkedin-square'></box-icon></a>
+							<a href="http://twitter.com/share?text=text goes here&url=http://url goes here&hashtags=hashtag1,hashtag2,hashtag3" target="_blank"><box-icon name='twitter' type='logo' ></box-icon></a>
+							<a href="https://www.facebook.com/share.php?u=https://github.com/saint-mantis/Blog" target="_blank"><box-icon name='facebook-square' type='logo' ></box-icon></a>
+							<box-icon name='quora' type='logo' ></box-icon>
+						</div>
+					</div>
+				</div>
+				<div class="mb-main-content">
+                    <p>Classification of images of cats and dogs is a common task in the field of computer vision. In this blog post, we will walk through the process of building a classifier using Keras and Python3 that can accurately distinguish between images of cats and dogs.
+                        <br/>
+            First, we will start by importing the necessary libraries. We will be using the following libraries in this tutorial:
+                        <br/>
+                        <br>
+            <b>Numpy</b>: for working with arrays and matrices
+                        <br/>
+            <b>Matplotlib</b>: for visualizing data
+                        <br/>
+            <b>TensorFlow</b>: for building and training the model
+                        <br/>
+            <b>Keras</b>: for building the neural network layers
+                        <br/>
+                    </p>
+                    <div class="show-code">
+                        <p>
+            import numpy as np <br>
+            import matplotlib.pyplot as plt <br>
+            from tensorflow.keras import layers <br>
+            from tensorflow.keras import models <br>
+    
+                        </p>
+    
+                    </div>
+            <p>Next, we will need to obtain a dataset of images of cats and dogs. There are many publicly available datasets that can be used for this task, such as the Kaggle Cats and Dogs dataset. Once we have obtained the dataset, we will need to preprocess the images by resizing and normalizing them. We will also need to divide the data into training and test sets.</p>
+            <br>
+            <div class="show-code">
+                <p>
+                    from tensorflow.keras.preprocessing.image import ImageDataGenerator <br><br>
+    
+                    # Set the image size <br>   
+                    IMAGE_SIZE = (150, 150)<br><br>
+        
+                    # Create the training and test data generators<br>
+                    train_datagen = ImageDataGenerator(rescale = 1./255)<br>
+                    test_datagen = ImageDataGenerator(rescale = 1./255)<br><br>
+        
+                    # Create the training and test generators<br>
+                    train_generator = train_datagen.flow_from_directory(<br>
+                        'data/train',<br>
+                        target_size = IMAGE_SIZE,<br>
+                        batch_size = 32,<br>
+                        class_mode = 'binary')<br><br>
+        
+                    test_generator = test_datagen.flow_from_directory(<br>
+                        'data/test',<br>
+                        target_size = IMAGE_SIZE,<br>
+                        batch_size = 32,<br>
+                        class_mode = 'binary')<br>
+                </p>
+    
+            </div>
+            <p>
+                Once the data is preprocessed, we can build the neural network model using Keras. We will use a simple convolutional neural network (CNN) with two convolutional layers and two fully connected layers.
+            </p>
+            <div class="show-code">
+            <p>
+                model = models.Sequential() <br>
+                model.add(layers.Conv2D(32, (3, 3), activation='relu', input_shape=(150, 150, 3)))<br>
+                model.add(layers.MaxPooling2D((2, 2)))<br>
+                model.add(layers.Conv2D(64, (3, 3), activation='relu'))<br>
+                model.add(layers.MaxPooling2D((2, 2)))<br>
+                model.add(layers.Conv2D(128, (3, 3), activation='relu'))<br>
+                model.add(layers.MaxPooling2D((2, 2)))<br>
+                model.add(layers.Flatten())<br>
+                model.add(layers.Dense(512, activation='relu'))<br>
+                model.add(layers.Dense(1, activation='sigmoid')) <br>
+            </p>
+    
+            </div>
+            <p>Once the model is defined, we can then compile and train it using the training data.</p>
+            <div class="show-code">
+                <p>
+                    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['acc']) <br>
+                    history = model.fit(<br>
+                    train_generator,<br>
+                    steps_per_epoch=100,<br>
+                    epochs=10,<br>
+                    validation_data=test_generator,<br>
+                    validation_steps=50)<br>
+                </p>
+    
+            </div>
+            <p>Now that the model is trained, we can evaluate its performance on the test data using the evaluate() function.</p>
+            <div class="show-code">
+                <p>
+                    test_loss, test_acc = model.evaluate(test_generator, steps=50) <br>
+                    print('Test accuracy:', test_acc) <br>
+                </p>
+            </div>
+            <p>Finally, we can use the trained model to make predictions on new images.</p>
+            <div class="show-code">
+                <p>
+                    from tensorflow.keras.preprocessing import image <br><br>
+    
+                    # Load an image file<br>
+                    img = image.load_img('data/test/dogs/dog1.jpg', target_size=(150, 150))<br><br>
+    
+                    # Convert the image to a numpy array<br>
+                    x = image.img_to_array(img)<br><br>
+    
+                    # Add an extra dimension to the array (required by the model)<br>
+                    x = np.expand_dims(x, axis=0)<br><br>
+    
+                    # Make a prediction<br>
+                    predictions = model.predict(x)<br><br>
+    
+                    # Print the prediction<br>
+                    print(predictions)<br>
+    
+                </p>
+            </div>
+            <p>With this, we have successfully built a classifier that can distinguish between images of cats and dogs using Keras.</p>
+    
+    
+    
+    
+                </div>
+
+	
+
+				</div>
+		
+			</div>
+		</div>
+
+	</div>
+<script src="../js/main.js"></script>
+</body>
+</html>
